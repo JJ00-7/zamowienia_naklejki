@@ -63,6 +63,7 @@ model Request {
   quantityMode         QuantityMode @map("quantity_mode")
   quantityFixed        Int?         @map("quantity_fixed")
   quantityVariantsNote String?      @map("quantity_variants_note")
+  additionalNotes      String?      @map("additional_notes")
 
   emailNotificationSent Boolean @default(false) @map("email_notification_sent")
 

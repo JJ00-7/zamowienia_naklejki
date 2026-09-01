@@ -25,6 +25,7 @@ const RequestSchema = z
       z.coerce.number().int().positive().optional().nullable()
     ),
     quantityVariantsNote: z.string().optional().nullable(),
+    additionalNotes: z.string().optional().nullable(),
   })
   .refine((d) => d.shape !== 'custom' || !!d.shapeCustomNote, {
     message: 'shapeCustomNote wymagane dla kształtu niestandardowego',

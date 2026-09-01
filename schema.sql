@@ -33,6 +33,7 @@ CREATE TABLE requests (
   quantity_mode quantity_mode NOT NULL,
   quantity_fixed integer,
   quantity_variants_note text,
+  additional_notes text,
 
   email_notification_sent boolean NOT NULL DEFAULT false,
 

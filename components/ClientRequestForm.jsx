@@ -19,6 +19,7 @@ const initialState = {
   quantityMode: 'fixed',
   quantityFixed: '',
   quantityVariantsNote: '',
+  additionalNotes: '',
 };
 
 // Prosty, samodzielny komponent "wybieralnej karty" — używany wielokrotnie
@@ -283,6 +284,21 @@ export default function ClientRequestForm() {
             {errors.quantityVariantsNote && <p className="text-sm text-red-600 mt-1">{errors.quantityVariantsNote}</p>}
           </div>
         )}
+      </section>
+
+      {/* Dodatkowe uwagi */}
+      <section className="panel p-6 space-y-4">
+        <SectionEyebrow tone="orange">06 · Dodatkowe uwagi</SectionEyebrow>
+        <div>
+          <label className="field-label">Czy chcesz coś jeszcze dodać?</label>
+          <textarea
+            className="field-input"
+            rows={4}
+            placeholder="Np. termin realizacji, przeznaczenie naklejek lub inne ważne informacje..."
+            value={form.additionalNotes}
+            onChange={set('additionalNotes')}
+          />
+        </div>
       </section>
 
       <div className="flex flex-col items-center gap-3 pt-2">
