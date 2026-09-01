@@ -104,10 +104,10 @@ export default function ClientRequestForm() {
     return (
       <div className="max-w-xl mx-auto mt-24 panel p-10 text-center">
         <SectionEyebrow tone="mustard">Wysłano!</SectionEyebrow>
-        <h1 className="text-3xl mt-4 mb-3">Dzięki, mamy Twoje zapytanie 🌶️</h1>
+        <h1 className="text-3xl mt-4 mb-3">Dzięki za przesłanie formularza! 💛</h1>
         <p className="opacity-80">
-          Przejrzymy Twoje zapytanie i odezwiemy się mailowo lub telefonicznie
-          zwykle w ciągu 24h roboczych.
+          Twoje zapytanie trafiło na moje biurko. Przeanalizuję je i wrócę z
+          wyceną w ciągu 24h roboczych.
         </p>
       </div>
     );
