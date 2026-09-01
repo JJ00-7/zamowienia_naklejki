@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens — styl "hot sauce" naklejkarni.
+  Paleta i typografia dobrane pod branżę (naklejki = etykiety, stickery,
+  odznaki), nie generyczny SaaS. Sygnatura: obrócone "naklejkowe" plakietki
+  (.sticker-badge) używane konsekwentnie jako etykiety sekcji i statusy —
+  dosłowny motyw naklejki przeniesiony w UI.
+*/
+
+:root {
+  --cream: #fbf3d9;
+  --cream-soft: #fffaf0;
+  --ink: #211714;
+  --hot-pink: #e9195f;
+  --hot-pink-deep: #c20f4d;
+  --maroon: #7e1430;
+  --orange: #ee7b2e;
+  --mustard: #f3c230;
+  --lavender: #c7a2f0;
+  --leaf: #2f8f5b;
+  --line: rgba(33, 23, 20, 0.12);
+
+  --font-display: 'Baloo 2', ui-rounded, system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-pop: 6px 6px 0px 0px rgba(33, 23, 20, 0.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.mono { font-family: var(--font-mono); }
+
+/* Sygnatura wizualna: obrócona plakietka-naklejka */
+.sticker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  transform: rotate(-4deg);
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+.sticker-badge.pink { background: var(--hot-pink); color: white; }
+.sticker-badge.mustard { background: var(--mustard); color: var(--ink); }
+.sticker-badge.lavender { background: var(--lavender); color: var(--ink); }
+.sticker-badge.orange { background: var(--orange); color: white; }
+.sticker-badge.tilt-right { transform: rotate(4deg); }
+
+.panel {
+  background: var(--cream-soft);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-pop);
+}
+
+.btn-pop {
+  font-family: var(--font-display);
+  font-weight: 700;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 12px 24px;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+.btn-pop:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 0 var(--ink); }
+.btn-pop:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 0 var(--ink); }
+.btn-pop.primary { background: var(--hot-pink); color: white; }
+.btn-pop.secondary { background: var(--mustard); color: var(--ink); }
+.btn-pop.ghost { background: transparent; color: var(--ink); }
+
+.field-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: white;
+}
+.field-input:focus {
+  outline: 3px solid var(--hot-pink);
+  outline-offset: 1px;
+}
+
+.field-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.choice-card {
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  background: white;
+  transition: transform 0.1s ease;
+}
+.choice-card[data-active="true"] {
+  background: var(--mustard);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 0 var(--ink);
+}

@@ -1,0 +1,17 @@
+# Zależności
+/node_modules
+/.pnp
+.pnp.js
+
+# Środowisko i dane poufne (najważniejsze!)
+.env
+.env*.local
+
+# Next.js
+/.next/
+/out/
+
+# Pliki systemowe i edytora
+.DS_Store
+Thumbs.db
+.vscode/

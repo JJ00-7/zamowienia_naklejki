@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StickerShape {
+  rectangle
+  circle_oval
+  custom
+}
+
+enum DesignOption {
+  client_provides_later
+  agency_designs
+}
+
+enum LaminationType {
+  none
+  gloss
+  matte
+}
+
+enum OutputFormat {
+  single_pieces
+  sheets
+}
+
+enum QuantityMode {
+  fixed
+  multi_variant_request
+}
+
+model Request {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Dane kontaktowe
+  companyName   String  @map("company_name")
+  nip           String?
+  contactPerson String  @map("contact_person")
+  phone         String
+  email         String
+
+  // Parametry naklejki
+  widthMm         Int
+  heightMm        Int
+  shape           StickerShape
+  shapeCustomNote String?      @map("shape_custom_note")
+
+  // Projekt graficzny
+  designOption DesignOption @map("design_option")
+  designBrief  String?      @map("design_brief")
+
+  // Wykończenie i wydanie
+  lamination   LaminationType
+  outputFormat OutputFormat   @map("output_format")
+
+  // Nakład
+  quantityMode         QuantityMode @map("quantity_mode")
+  quantityFixed        Int?         @map("quantity_fixed")
+  quantityVariantsNote String?      @map("quantity_variants_note")
+
+  emailNotificationSent Boolean @default(false) @map("email_notification_sent")
+
+  @@map("requests")
+}
