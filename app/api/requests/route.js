@@ -19,7 +19,11 @@ const RequestSchema = z
     lamination: z.enum(['none', 'gloss', 'matte']),
     outputFormat: z.enum(['single_pieces', 'sheets']),
     quantityMode: z.enum(['fixed', 'multi_variant_request']),
-    quantityFixed: z.coerce.number().int().positive().optional().nullable(),
+    // Toleruje brak wartości, pusty string lub null w trybie wariantów
+    quantityFixed: z.preprocess(
+      (val) => (val === '' || val === null || val === undefined ? null : val),
+      z.coerce.number().int().positive().optional().nullable()
+    ),
     quantityVariantsNote: z.string().optional().nullable(),
   })
   .refine((d) => d.shape !== 'custom' || !!d.shapeCustomNote, {
@@ -30,7 +34,7 @@ const RequestSchema = z
     message: 'designBrief wymagane przy zleceniu projektu',
     path: ['designBrief'],
   })
-  .refine((d) => d.quantityMode !== 'fixed' || !!d.quantityFixed, {
+  .refine((d) => d.quantityMode !== 'fixed' || (d.quantityFixed !== null && d.quantityFixed !== undefined), {
     message: 'quantityFixed wymagane dla trybu fixed',
     path: ['quantityFixed'],
   })

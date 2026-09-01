@@ -78,11 +78,20 @@ export default function ClientRequestForm() {
     e.preventDefault();
     if (!validate()) return;
     setStatus('submitting');
+
+    // Przy wielu wariantach nie ma jednego, stałego nakładu. Wysyłamy null,
+    // który API i baza obsługują jako poprawną wartość opcjonalną.
+    const payload = {
+      ...form,
+      quantityFixed:
+        form.quantityMode === 'multi_variant_request' ? null : Number(form.quantityFixed),
+    };
+
     try {
       const res = await fetch('/api/requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('request_failed');
       setStatus('done');
